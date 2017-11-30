@@ -1,0 +1,16 @@
+@font-face{
+    // embedded-opentype 适配IE
+    // woff chrome和firefox
+    // truetype 这个支持大多数浏览器，包括移动浏览器
+    // svg ios4.1使用
+    // font-family: "arrow";
+    // src: url("../fonts/icons/arrow.eot") format("enbedded");
+    // src: url('../fonts/icons/arrow.eot') format('embedded-opentype'),
+    // url('../fonts/icons/arrow.woff2') format('woff2'),
+    // url('../fonts/icons/arrow.woff') format('woff'),
+    // url('../fonts/icons/arrow.ttf') format('truetype'),
+    // url('../fonts/icons/arrow.svg') format('svg');
+    // font-weight: normal;
+    // font-style: normal;
+
+}
