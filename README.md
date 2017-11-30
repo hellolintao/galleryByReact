@@ -1,4 +1,2 @@
-# gallyByReact
-一个简单的React项目。
-
-在线页面生成~~~
+# About the dist folder
+After building the dist version of your project, the generated files are stored in this folder. You should keep it under version control.
