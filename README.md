@@ -1,4 +1,4 @@
-# gallyByReact
-一个简单的React项目。
-
-在线页面生成~~~
+# 演示地址： https://hellolintao.github.io/galleryByReact/
+# 使用技术：
+* React
+* Less
