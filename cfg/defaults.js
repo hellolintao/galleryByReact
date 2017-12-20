@@ -61,7 +61,7 @@ function getDefaultModules() {
 
 module.exports = {
   srcPath: srcPath,
-  publicPath: '/assets/',
+  publicPath: './assets/',
   /*这个地址在开发和生产环境中不一样不一样，
     开发环境：publicPath: '/assets/',
     生成环境：publicPath: './assets/',
