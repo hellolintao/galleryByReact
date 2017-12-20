@@ -1,35 +1,34 @@
 // 导入初始化CSS，和主要的main.less布局文件
 require('normalize.css/normalize.css');
 require('styles/main.less');
-require('styles/style.css');
-// 导入两个基础包
+// 导入两个基础包和两个木偶组件
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ControllerUnit from './ControllerUnit.js';
-import ImgFigure from './ImgFigure.js';
+import ControllerUnit from './ControllerUnit';
+import ImgFigure from './ImgFigure';
 
 // 获取图片相关的数据，存储在一个JSON文件中
 var imageDatas = require('../data/imageDatas.json');
 
-// 利用自执行函数，将图片名信息转化成图片URL路径信息，并存储到原变量中
+// 利用自执行函数，将图片名信息转化成图片URL路径信息，并存储到原变量中,因为json文件中没有图片路径信息
 imageDatas = ( function  genImageURL(imageDatasArr) {
-  for(var i=0,j=imageDatasArr.length;i<j;i++){
+  for(var i = 0, j = imageDatasArr.length; i < j; i ++){
     var singleImageDate = imageDatasArr[i];
-    singleImageDate.imggeURL=require('../images/'+singleImageDate.fileName);
+    singleImageDate.imggeURL = require('../images/' + singleImageDate.fileName);
     singleImageDate[i] = singleImageDate;
   }
   return imageDatasArr;
 })(imageDatas);
 
 // 获取区间内的随机值
-function getRangeRandom(low,high) {
-  return Math.ceil(Math.random()*(high-low)+low)
+function getRangeRandom(low, high) {
+  return Math.ceil(Math.random() * (high - low) + low)
 }
 
 // 获取0-30度之间的一个任意正负值
 function get30DegRandom() {
-  var result = (Math.random()>0.5?'':'-')+Math.ceil(Math.random()*30);
-  if(result!=0){
+  var result = (Math.random() > 0.5 ? '' : '-') + Math.ceil(Math.random() * 30);
+  if(result != 0){
     return result;
   }else{
     get30DegRandom();
@@ -38,9 +37,9 @@ function get30DegRandom() {
 }
 
 
-// 管理者模式：由一个类管理所有的数据和组件
+// 管理者模式：由一个类管理所有的数据和组件，现在这个类就是管理所有数据的类，相当于一个逻辑组件
 class AppComponent extends React.Component {
-  Constant={
+  Constant = {
     centerPos:{
       left: 0,
       right: 0
@@ -101,7 +100,7 @@ class AppComponent extends React.Component {
     imgsArrangeTopArr = imgsArrangeArr.splice(topImgSpliceIndex,topImgNum);
     
     // 布局位于上侧的图片
-    imgsArrangeTopArr.forEach((value,index)=>{
+    imgsArrangeTopArr.forEach((value,index) => {
         imgsArrangeTopArr[index]={
           pos:{
             top: getRangeRandom(vPosRangeTopY[0], vPosRangeTopY[1]),
@@ -112,7 +111,7 @@ class AppComponent extends React.Component {
         };
       });
 
-      for(var i = 0,j=imgsArrangeArr.length,k = j / 2;i<j;i++){
+      for(var i=0, j=imgsArrangeArr.length, k=j/2; i<j; i++){
         var hPosRangeLORX = null;
         
         // 前半部分布局左面，右半部分布局右边
@@ -153,6 +152,7 @@ class AppComponent extends React.Component {
   * @param index,需要被居中的图片对应的图片信息数组的index值
   * @return{Funtion}
 */
+// 居中方法
 center=function(index){
   return function(){
     this.rearrange(index);
@@ -212,11 +212,10 @@ center=function(index){
     this.rearrange(0);
   }
 
-
   render() {
     var ControllerUnits = [];
     var ImgFigures = [];
-    imageDatas.forEach((value,index) => {
+    imageDatas.forEach((value, index) => {
       // 初始化状态对象
       if(!this.state.imgsArrangeArr[index]){
         this.state.imgsArrangeArr[index]={
@@ -249,8 +248,5 @@ center=function(index){
     );
   }
 }
-
-AppComponent.defaultProps = {
-};
 
 export default AppComponent;
